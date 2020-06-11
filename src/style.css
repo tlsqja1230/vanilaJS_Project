@@ -1,3 +1,34 @@
+/* darkMode 관련 */
+:root {
+  --color-mode: 'light';
+  --color-dark: black;
+  --color-light: white;
+  --background: white;
+  --text-color: black;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-color);
+  transition: background 500ms ease-in-out, color 200ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-mode: 'dark';
+  }
+  
+  :root:not([data-user-color-scheme]) {
+    --background: var(--color-dark);
+    --text-color: var(--color-light);
+  }
+}
+
+[data-user-color-scheme="dark"] {
+  --background: var(--color-dark);
+  --text-color: var(--color-light);
+}
+/* darkMode 관련 end */
 
 #App {
     margin: 1.5em auto;
@@ -24,72 +55,69 @@ h1, h2, h3, h4, h5 {
 .search-box {
   font-size: 20px;
 }
+/* searching-section end */
 
 
-/* <label class="switch">
-  <input type="checkbox" checked>
-  <span class="slider round"></span>
-</label> */
-/* toggle style start */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+/* card section */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
+
+.cat-card {
+  display: flex;
+  flex-direction: column;
+
+  /* TODO: 카드 정렬하기 */
+  margin-left: calc( (100% - (20% * 4)) / 4);
   
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
+  width: 250px;
+  height: 350px;
 }
-  
-.slider {
-  position: absolute;
-  cursor: pointer;
+
+.card-image {
+  height: 70%;
+}
+
+/* card section end*/
+
+
+
+
+/* darkMode toggle style start */
+.darkMode-div {
+  position: fixed;
+  top: 1rem;
+  right: 5rem;
+  z-index: 3;
+}
+
+.darkMode-btn {
+  width: 40px;
+  height: 20px;
+}
+/* darkmode toggle style end */
+
+/* load ui */
+.loading-wrapper {
+  position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+
+  z-index: 1;
   
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-  
-input:checked + .slider {
-  background-color: #2196F3;
-}
-  
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-  
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-  
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-  
-.slider.round:before {
-  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgb(255, 255, 255, 0.7);
 }
 
+.hidden {
+  visibility: hidden;
+}
+/* load ui end*/
 
-/* toggle style end */
